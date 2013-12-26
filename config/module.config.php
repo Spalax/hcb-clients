@@ -21,7 +21,7 @@ return array(
         )
     ),
 
-    'hcb-translations' => array (
+    'hcb_translations' => array (
         'package_lang_dirs' => array(
             'HcbClients' => array(
                 'gettext' => array(
