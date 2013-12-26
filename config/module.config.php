@@ -21,13 +21,26 @@ return array(
         )
     ),
 
-    'hcb_translations' => array (
+    'hcb-translations' => array (
         'package_lang_dirs' => array(
             'HcbClients' => array(
                 'gettext' => array(
                     'path'=> __DIR__ . '/../../HcbClients/language',
                     'mo' => '%s.mo',
                     'pot' => __DIR__ . '/../../HcbClients/language/messages.pot'
+                )
+            )
+        )
+    ),
+
+    'huskycms' => array(
+        'hc-backend'=> array(
+            'packages' => array(
+                'hcb-clients' => array(
+                    'js'=>array(
+                        'type'=>'content',
+                        'http_path'=>'/js/src/hcb-clients'
+                    )
                 )
             )
         )
