@@ -13,7 +13,15 @@ return array(
         )
     ),
 
-    'translations' => array (
+    'asset_manager' => array(
+        'resolver_configs' => array(
+            'paths' => array(
+                'HcbClients' => __DIR__ . '/../public',
+            )
+        )
+    ),
+
+    'hcb-translations' => array (
         'package_lang_dirs' => array(
             'HcbClients' => array(
                 'gettext' => array(
