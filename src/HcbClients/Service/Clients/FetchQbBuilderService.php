@@ -1,11 +1,11 @@
 <?php
 namespace HcbClients\Service\Clients;
 
-use HcBackend\Entity\User as UserEntity;
 use HcBackend\Service\FetchQbBuilderServiceInterface;
 use HcBackend\Service\Sorting\SortingServiceInterface;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
+use HcbClients\Entity\Client as ClientEntity;
 use Zend\Stdlib\Parameters;
 
 class FetchQbBuilderService implements FetchQbBuilderServiceInterface
@@ -34,14 +34,13 @@ class FetchQbBuilderService implements FetchQbBuilderServiceInterface
     public function fetch(Parameters $params = null)
     {
         $qb = $this->entityManager
-                   ->getRepository('App\Entity\User')
-                   ->createQueryBuilder('u');
+                   ->getRepository('HcbClients\Entity\Client')
+                   ->createQueryBuilder('c');
 
-        $qb->where('u.role = :roleId')
-           ->setParameter('roleId', UserEntity::ROLE_CLIENT);
+        $qb->where('c.role = :roleId')
+           ->setParameter('roleId', ClientEntity::ROLE_CLIENT);
 
         if (is_null($params)) return $qb;
-
         return $this->sortingService->apply($params, $qb, 'u');
     }
 }

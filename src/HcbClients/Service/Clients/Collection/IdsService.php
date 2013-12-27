@@ -1,7 +1,7 @@
 <?php
 namespace HcbClients\Service\Clients\Collection;
 
-use HcBackend\Entity\User as UserEntity;
+use HcbClients\Entity\Client as ClientEntity;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 
@@ -19,15 +19,15 @@ class IdsService
 
     /**
      * @param array $ids
-     * @return UserEntity[]
+     * @return ClientEntity[]
      */
     public function fetch(array $ids)
     {
         $qb = $this->entityManager
-                   ->getRepository('App\Entity\User')
+                   ->getRepository('HcbClients\Entity\Client')
                    ->createQueryBuilder('u');
 
-        $qb->where($qb->expr()->eq('u.role', UserEntity::ROLE_CLIENT));
+        $qb->where($qb->expr()->eq('u.role', ClientEntity::ROLE_CLIENT));
         $qb->andWhere($qb->expr()->in('u', $ids));
 
         return $qb->getQuery()->getResult();

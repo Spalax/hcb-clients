@@ -4,7 +4,7 @@ namespace HcbClients\Data\Clients;
 interface BlockInterface
 {
     /**
-     * @return \HcBackend\Entity\User[]
+     * @return \HcbClients\Entity\Client[]
      */
     public function getClients();
 }
