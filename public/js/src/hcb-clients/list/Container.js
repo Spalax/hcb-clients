@@ -3,13 +3,13 @@ define([
     "dojo/_base/array",
     "dojo/_base/lang",
     "dojo/on",
-    "../../_ContentMixin",
+    "hc-backend/layout/main/content/_ContentMixin",
     "dijit/_TemplatedMixin",
     "dojo/text!./templates/Container.html",
     "dojo/i18n!../nls/List",
     "dojo/request",
-    "../../../../../router",
-    "./widget/Grid",
+    "hc-backend/router",
+    "hcb-clients/list/widget/Grid",
     "dijit/form/Button",
     "dojo-common/response/_StatusMixin",
     "dojo-common/response/_MessageMixin"
@@ -43,7 +43,14 @@ define([
                                                 'class': this.baseClass+'BlockClient',
                                                 disabled: true,
                                                 'onClick': lang.hitch(this, '_onBlockClient')});
+            } catch (e) {
+                 console.error(this.declaredClass, arguments, e);
+                 throw e;
+            }
+        },
 
+        startup: function () {
+            try {
                 this.addChild(this._blockWidget);
                 this.addChild(this._gridWidget);
             } catch (e) {

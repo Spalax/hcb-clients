@@ -10,7 +10,7 @@ define([
     "dgrid/extensions/ColumnHider",
     "dgrid/extensions/ColumnResizer",
     "dgrid/extensions/DijitRegistry",
-    "../../../../../../dgrid/_Selection",
+    "hc-backend/dgrid/_Selection",
     "dgrid/Keyboard",
     "dgrid/selector",
     "dojo/i18n!../../nls/List"
