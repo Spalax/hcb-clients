@@ -49,7 +49,7 @@ class Block extends AbstractInputFilter implements BlockInterface, DataMessagesI
     }
 
     /**
-     * @return \HcBackend\Entity\User[]
+     * @return \HcbClients\Entity\Client[]
      */
     public function getClients()
     {

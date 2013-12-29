@@ -1,7 +1,7 @@
 <?php
 namespace HcbClients\Service\Clients\Client;
 
-use HcBackend\Entity\User as UserEntity;
+use HcbClients\Entity\Client as ClientEntity;
 use HcbClients\Data\Clients\BlockInterface;
 use Doctrine\ORM\EntityManager;
 use Zf2Libs\Stdlib\Service\Response\Messages\Response;
@@ -29,9 +29,9 @@ class BlockService
         try {
             $this->entityManager->beginTransaction();
             $clientEntities = $clientsToBlock->getClients();
-            /* @var $clientEntities UserEntity[] */
+            /* @var $clientEntities ClientEntity[] */
             foreach ($clientEntities as $clientEntity) {
-                $clientEntity->setState(UserEntity::STATE_BLOCKED);
+                $clientEntity->setState(ClientEntity::STATE_BLOCKED);
                 $this->entityManager->persist($clientEntity);
             }
 

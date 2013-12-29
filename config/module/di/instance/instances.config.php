@@ -2,8 +2,8 @@
 return array(
     'Collection-Clients-List' => array(
         'parameters' => array(
-            'fetchQbBuilderService' => 'HcbClients\Service\Clients\FetchQbBuilderService',
-            'extractor' => 'HcbClients\Stdlib\Extractor\Clients\Extractor'
+            'paginatorDataFetchService' => 'HcbClients\Service\Clients\FetchQbBuilderService',
+            'extractor' => 'HcbClients\Stdlib\Extractor\Clients\Client\Extractor'
         )
     ),
 
