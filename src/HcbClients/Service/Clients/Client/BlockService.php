@@ -13,9 +13,16 @@ class BlockService
      */
     protected $entityManager;
 
-    public function __construct(EntityManager $entityManager)
+    /**
+     * @var \Zf2Libs\Stdlib\Service\Response\Messages\Response
+     */
+    protected $response;
+
+    public function __construct(EntityManager $entityManager,
+                                Response $response)
     {
         $this->entityManager = $entityManager;
+        $this->response = $response;
     }
 
     /**
@@ -24,11 +31,10 @@ class BlockService
      */
     public function block(BlockInterface $clientsToBlock)
     {
-        $response = new Response();
-
         try {
             $this->entityManager->beginTransaction();
             $clientEntities = $clientsToBlock->getClients();
+
             /* @var $clientEntities ClientEntity[] */
             foreach ($clientEntities as $clientEntity) {
                 $clientEntity->setState(ClientEntity::STATE_BLOCKED);
@@ -39,11 +45,11 @@ class BlockService
             $this->entityManager->commit();
         } catch (\Exception $e) {
             $this->entityManager->rollback();
-            $response->error($e->getMessage())->failed();
-            return $response;
+            $this->response->error($e->getMessage())->failed();
+            return $this->response;
         }
 
-        $response->success();
-        return $response;
+        $this->response->success();
+        return $this->response;
     }
 }
