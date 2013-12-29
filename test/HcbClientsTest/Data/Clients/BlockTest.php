@@ -1,206 +1,97 @@
 <?php
 namespace HcbClientsTest\Data\Clients;
 
+use HcbClients\Data\Clients\Block;
+use HcbClients\Entity\Client;
+use Zend\Stdlib\Parameters;
+use ZendTest\Di\TestAsset\DummyParams;
+
 class BlockTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $requestParams;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $request;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $idsCollection;
+
+    /**
+     * @var \PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $translator;
+
     /**
      * Prepare the objects to be tested.
      */
     protected function setUp()
     {
+        $this->request = $this->getMock('\Zend\Http\PhpEnvironment\Request');
+        $this->requestParams = $this->getMock('\Zend\Stdlib\Parameters');
 
-    }
+        $this->request->expects($this->any())
+            ->method('getPost')
+            ->will($this->returnValue($this->requestParams));
 
-    public function testPostExtracted()
-    {
-        $request = $this->getMock('Zend\Stdlib\RequestInterface');
-    }
+        $this->idsCollection = $this->getMock('\HcbClients\Service\Clients\Collection\IdsService',
+                                              array('fetch'), array(), '', false);
 
-    /**
-     * Get through the first part of SetUpPrepareForAuthentication
-     */
-    protected function setUpPrepareForAuthentication()
-    {
-        $this->request = $this->getMock('Zend\Stdlib\RequestInterface');
-        $this->event = $this->getMock('ZfcUser\Authentication\Adapter\AdapterChainEvent');
-
-        $this->event->expects($this->once())->method('setRequest')->with($this->request);
-
-        $this->eventManager->expects($this->at(0))->method('trigger')->with('authenticate.pre');
-
-        $result = $this->getMock('Zend\EventManager\ResponseCollection');
-
-        // @todo Test the closure
-        $this->eventManager->expects($this->at(1))
-            ->method('trigger')
-            ->with('authenticate', $this->event)
-            ->will($this->returnValue($result));
-
-        $this->adapterChain->setEvent($this->event);
-
-        return $result;
+        $this->translator = $this->getMock('\Zend\I18n\Translator\Translator');
+        $this->translator->expects($this->any())->method('translate')->will($this->returnArgument(0));
     }
 
     /**
-     * Provider for testPrepareForAuthentication()
-     *
      * @return array
      */
-    public function identityProvider()
+    public function clientsProvider()
     {
-        return array(
-            array(true, true),
-            array(false, false),
-        );
+        return array(array(array(new Client(), new Client(), new Client()),
+                           array(new Client())));
     }
 
     /**
-     * Tests prepareForAuthentication when falls through events.
-     *
-     * @param mixed $identity
-     * @param bool  $expected
-     *
-     * @dataProvider identityProvider
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::prepareForAuthentication
+     * @dataProvider clientsProvider
+     * @param array $expectedClients
      */
-    public function testPrepareForAuthentication($identity, $expected)
+    public function testClientsExtractedFromPost(array $expectedClients)
     {
-        $result = $this->setUpPrepareForAuthentication();
+        $this->requestParams->expects($this->any())
+                      ->method('toArray')
+                      ->will($this->returnValue(array('clients'=>array(1,2,3))));
 
-        $result->expects($this->once())->method('stopped')->will($this->returnValue(false));
+        $this->idsCollection->expects($this->any())
+                      ->method('fetch')
+                      ->will($this->returnValue($expectedClients));
 
-        $this->event->expects($this->once())->method('getIdentity')->will($this->returnValue($identity));
+        $block = new Block($this->request, $this->idsCollection, $this->translator);
 
-        $this->assertEquals(
-            $expected,
-            $this->adapterChain->prepareForAuthentication($this->request),
-            'Asserting prepareForAuthentication() returns true'
-        );
+        $this->assertTrue($block->isValid());
+        $this->assertEquals($expectedClients, $block->getClients());
     }
 
-    /**
-     * Test prepareForAuthentication() when the returned collection contains stopped.
-     *
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::prepareForAuthentication
-     */
-    public function testPrepareForAuthenticationWithStoppedEvent()
+    public function testNotFoundClientsError()
     {
-        $result = $this->setUpPrepareForAuthentication();
+        $this->requestParams->expects($this->any())
+            ->method('toArray')
+            ->will($this->returnValue(array('clients'=>array(1,2,3))));
 
-        $result->expects($this->once())->method('stopped')->will($this->returnValue(true));
+        $this->idsCollection->expects($this->any())
+            ->method('fetch')
+            ->will($this->returnValue(array()));
 
-        $lastResponse = $this->getMock('Zend\Stdlib\ResponseInterface');
-        $result->expects($this->atLeastOnce())->method('last')->will($this->returnValue($lastResponse));
+        $block = new Block($this->request, $this->idsCollection, $this->translator);
 
-        $this->assertEquals(
-            $lastResponse,
-            $this->adapterChain->prepareForAuthentication($this->request),
-            'Asserting the Response returned from the event is returned'
-        );
-    }
-
-    /**
-     * Test prepareForAuthentication() when the returned collection contains stopped.
-     *
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::prepareForAuthentication
-     * @expectedException ZfcUser\Exception\AuthenticationEventException
-     */
-    public function testPrepareForAuthenticationWithBadEventResult()
-    {
-        $result = $this->setUpPrepareForAuthentication();
-
-        $result->expects($this->once())->method('stopped')->will($this->returnValue(true));
-
-        $lastResponse = 'random-value';
-        $result->expects($this->atLeastOnce())->method('last')->will($this->returnValue($lastResponse));
-
-        $this->adapterChain->prepareForAuthentication($this->request);
-    }
-
-    /**
-     * Test getEvent() when no event has previously been set.
-     *
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::getEvent
-     */
-    public function testGetEventWithNoEventSet()
-    {
-        $event = $this->adapterChain->getEvent();
-
-        $this->assertInstanceOf(
-            'ZfcUser\Authentication\Adapter\AdapterChainEvent',
-            $event,
-            'Asserting the adapter in an instance of ZfcUser\Authentication\Adapter\AdapterChainEvent'
-        );
-        $this->assertEquals(
-            $this->adapterChain,
-            $event->getTarget(),
-            'Asserting the Event target is the AdapterChain'
-        );
-    }
-
-    /**
-     * Test getEvent() when an event has previously been set.
-     *
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::setEvent
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::getEvent
-     */
-    public function testGetEventWithEventSet()
-    {
-        $event = new \ZfcUser\Authentication\Adapter\AdapterChainEvent();
-
-        $this->adapterChain->setEvent($event);
-
-        $this->assertEquals(
-            $event,
-            $this->adapterChain->getEvent(),
-            'Asserting the event fetched is the same as the event set'
-        );
-    }
-
-    /**
-     * Tests the mechanism for casting one event type to AdapterChainEvent
-     *
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::setEvent
-     */
-    public function testSetEventWithDifferentEventType()
-    {
-        $testParams = array('testParam' => 'testValue');
-
-        $event = new \Zend\EventManager\Event;
-        $event->setParams($testParams);
-
-        $this->adapterChain->setEvent($event);
-        $returnEvent = $this->adapterChain->getEvent();
-
-        $this->assertInstanceOf(
-            'ZfcUser\Authentication\Adapter\AdapterChainEvent',
-            $returnEvent,
-            'Asserting the adapter in an instance of ZfcUser\Authentication\Adapter\AdapterChainEvent'
-        );
-
-        $this->assertEquals(
-            $testParams,
-            $returnEvent->getParams(),
-            'Asserting event parameters match'
-        );
-    }
-
-    /**
-     * Test the logoutAdapters method.
-     *
-     * @depends testGetEventWithEventSet
-     * @covers ZfcUser\Authentication\Adapter\AdapterChain::logoutAdapters
-     */
-    public function testLogoutAdapters()
-    {
-        $event = new AdapterChainEvent();
-
-        $this->eventManager
-            ->expects($this->once())
-            ->method('trigger')
-            ->with('logout', $event);
-
-        $this->adapterChain->setEvent($event);
-        $this->adapterChain->logoutAdapters();
+        $this->assertFalse($block->isValid());
+        $this->assertEquals(array(), $block->getClients());
+        $messages = $block->getMessages();
+        $this->assertInternalType('array', $messages);
+        $this->assertArrayHasKey('clients', $messages);
     }
 }
