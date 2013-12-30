@@ -1,7 +1,7 @@
 define([
     "dojo/_base/declare",
     "dojo/_base/lang",
-    "dojo/store/JsonRest",
+    "hcb-clients/store/Clients",
     "dojo/store/Observable", 
     "dojo/store/Cache",
     "dojo/store/Memory",
@@ -14,21 +14,16 @@ define([
     "dgrid/Keyboard",
     "dgrid/selector",
     "dojo/i18n!../../nls/List"
-], function(declare, lang, JsonRest, Observable, Cache, Memory,
+], function(declare, lang, ClientsStore, Observable, Cache, Memory,
             OnDemandGrid, domStyle, ColumnHider, ColumnResizer, DijitRegistry,
             _Selection, Keyboard, selector, translation) {
-
-    var _store = Observable(Cache(JsonRest({
-        target: "/superman/clients",
-        idProperty: "id"
-    }), Memory()));
     
     return declare([ OnDemandGrid, ColumnHider, ColumnResizer,
                      Keyboard, _Selection, DijitRegistry ], {
         //  summary:
         //      Grid widget for displaying all available clients
         //      as list
-        store: _store,
+        store: ClientsStore,
 
         columns: [
             selector({ label: "", width: 40, selectorType: "checkbox" }),
