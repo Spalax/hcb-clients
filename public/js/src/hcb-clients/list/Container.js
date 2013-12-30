@@ -53,6 +53,7 @@ define([
             try {
                 this.addChild(this._blockWidget);
                 this.addChild(this._gridWidget);
+                this.inherited(arguments);
             } catch (e) {
                  console.error(this.declaredClass, arguments, e);
                  throw e;
