@@ -3,10 +3,11 @@ define([
     'dojo-common/store/JsonRest',
     'dojo/store/Cache',
     'dojo/store/Memory',
-    'dojo/store/Observable'
-], function (declare, JsonRest, Cache, Memory, Observable) {
+    'dojo/store/Observable',
+    'hc-backend/config'
+], function (declare, JsonRest, Cache, Memory, Observable, config) {
     return Observable(Cache(JsonRest({
-        target: "/superman/clients",
+        target: config.get('primaryRoute')+"/clients",
         idProperty: 'id'
     }), Memory()));
 });

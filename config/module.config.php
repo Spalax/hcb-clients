@@ -28,14 +28,12 @@ return array(
         )
     ),
 
-    'huskycms' => array(
-        'hc-backend'=> array(
-            'packages' => array(
-                'hcb-clients' => array(
-                    'js'=>array(
-                        'type'=>'content',
-                        'http_path'=>'/js/src/hcb-clients'
-                    )
+    'hc-backend'=> array(
+        'packages' => array(
+            'hcb-clients' => array(
+                'js'=>array(
+                    'type'=>'content',
+                    'http_path'=>'/js/src/hcb-clients'
                 )
             )
         )

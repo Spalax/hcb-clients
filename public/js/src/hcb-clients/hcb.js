@@ -8,7 +8,6 @@ define([
     return declare("ClientsPackage", [ _Package ], {
         // summary:
         //      Clients package will provide user to manage web site clients
-        defaultRoute: '/clients',
         title: translation['packageTitle']
     });
 });
