@@ -1,7 +1,7 @@
 <?php
 return array(
     //==========================Clients Controllers=====================//
-    'Collection-Clients-List',
-    'Collection-Clients-Block',
+    'HcbClients-Controller-List',
+    'HcbClients-Controller-Block',
     //-----------------------------------------------------------------//
 );

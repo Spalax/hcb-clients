@@ -18,7 +18,7 @@ return array(
                     'options' => array(
                         'with' => 'XMLHttpRequest',
                         'defaults' => array(
-                            'controller' => 'Collection-Clients-List'
+                            'controller' => 'HcbClients-Controller-List'
                         )
                     )
                 )
@@ -36,7 +36,7 @@ return array(
                     'options' => array(
                         'route' => '/block',
                         'defaults' => array(
-                            'controller' => 'Collection-Clients-Block'
+                            'controller' => 'HcbClients-Controller-Block'
                         )
                     )
                 )

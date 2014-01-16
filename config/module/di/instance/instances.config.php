@@ -1,13 +1,19 @@
 <?php
 return array(
-    'Collection-Clients-List' => array(
+    'HcbClients-Controller-List' => array(
         'parameters' => array(
             'paginatorDataFetchService' => 'HcbClients\Service\Clients\FetchQbBuilderService',
+            'viewModel' => 'HcbClients-PaginatorViewModel'
+        )
+    ),
+
+    'HcbClients-PaginatorViewModel' => array(
+        'parameters' => array(
             'extractor' => 'HcbClients\Stdlib\Extractor\Clients\Client\Extractor'
         )
     ),
 
-    'Collection-Clients-Block' => array(
+    'HcbClients-Controller-Block' => array(
         'parameters' => array(
             'inputData' => 'HcbClients\Data\Clients\Client\Block',
             'serviceCommand' => 'HcbClients\Service\Clients\Client\BlockCommand',
