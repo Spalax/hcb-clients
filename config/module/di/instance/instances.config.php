@@ -15,9 +15,35 @@ return array(
 
     'HcbClients-Controller-Block' => array(
         'parameters' => array(
-            'inputData' => 'HcbClients\Data\Clients\Client\Block',
-            'serviceCommand' => 'HcbClients\Service\Clients\Client\BlockCommand',
+            'inputData' => 'HcbClients-Clients-Collection',
+            'serviceCommand' => 'HcbClients\Service\Clients\BlockService',
             'jsonResponseModelFactory' => 'Zf2Libs\View\Model\Json\Specific\StatusMessageDataModelFactory'
+        )
+    ),
+
+    'HcbClients-Controller-Show' => array(
+        'parameters' => array(
+            'fetchService' => 'HcbClients-Client-FetchService',
+            'extractor' => 'HcbClients\Stdlib\Extractor\Clients\Client\Extractor'
+        )
+    ),
+
+    'HcbClients-Clients-Collection' => array(
+        'parameters' => array(
+            'idsCollection' => 'HcbClients\Service\Clients\Collection\IdsService',
+            'inputName' => 'clients'
+        )
+    ),
+
+    'HcbClients-Client-FetchService' => array(
+        'parameters' => array(
+            'entityName' => 'HcbClients\Entity\Client'
+        )
+    ),
+
+    'HcbClients\Service\Clients\BlockService' => array(
+        'parameters' => array(
+            'blockData' => 'HcbClients-Clients-Collection'
         )
     )
 );

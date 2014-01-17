@@ -6,6 +6,25 @@ return array(
     ),
     'may_terminate' => false,
     'child_routes' => array(
+        'show' => array(
+            'type' => 'segment',
+            'options' => array(
+                'route' => '/:id',
+                'constraints' => array( 'id' => '[0-9]+' )
+            ),
+            'may_terminate' => false,
+            'child_routes' => array(
+                'show' => array(
+                    'type' => 'method',
+                    'options' => array(
+                        'verb' => 'get',
+                        'defaults' => array(
+                            'controller' => 'HcbClients-Controller-Show'
+                        )
+                    )
+                )
+            )
+        ),
         'read' => array(
             'type' => 'method',
             'options' => array(

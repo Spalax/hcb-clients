@@ -1,12 +1,13 @@
 <?php
-namespace HcbClients\Service\Clients\Client;
+namespace HcbClients\Service\Clients;
 
+use HcBackend\Data\Collection\Entities\ByIdsInterface;
+use HcBackend\Service\CommandInterface;
 use HcbClients\Entity\Client as ClientEntity;
-use HcbClients\Data\Clients\BlockInterface;
 use Doctrine\ORM\EntityManager;
 use Zf2Libs\Stdlib\Service\Response\Messages\Response;
 
-class BlockService
+class BlockService implements CommandInterface
 {
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -18,22 +19,37 @@ class BlockService
      */
     protected $response;
 
+    /**
+     * @var ByIdsInterface
+     */
+    protected $blockData;
+
     public function __construct(EntityManager $entityManager,
-                                Response $response)
+                                Response $response,
+                                ByIdsInterface $blockData)
     {
         $this->entityManager = $entityManager;
         $this->response = $response;
+        $this->blockData = $blockData;
     }
 
     /**
-     * @param BlockInterface $clientsToBlock
      * @return Response
      */
-    public function block(BlockInterface $clientsToBlock)
+    public function execute()
+    {
+        return $this->block($this->blockData);
+    }
+
+    /**
+     * @param ByIdsInterface $clientsToBlock
+     * @return Response
+     */
+    public function block(ByIdsInterface $clientsToBlock)
     {
         try {
             $this->entityManager->beginTransaction();
-            $clientEntities = $clientsToBlock->getClients();
+            $clientEntities = $clientsToBlock->getEntities();
 
             /* @var $clientEntities ClientEntity[] */
             foreach ($clientEntities as $clientEntity) {
