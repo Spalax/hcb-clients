@@ -33,6 +33,7 @@ class FetchQbBuilderService implements DataServiceInterface
      */
     public function fetch(Parameters $params = null)
     {
+        /* @var $qb QueryBuilder */
         $qb = $this->entityManager
                    ->getRepository('HcbClients\Entity\Client')
                    ->createQueryBuilder('c');

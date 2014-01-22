@@ -38,6 +38,7 @@ class IdsService implements IdsServiceInterface
     {
         $digitsFilter = $this->di->get('Zend\Filter\Digits');
 
+        /* @var $qb QueryBuilder */
         $qb = $this->entityManager
                    ->getRepository('HcbClients\Entity\Client')
                    ->createQueryBuilder('u');
