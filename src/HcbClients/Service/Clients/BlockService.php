@@ -4,13 +4,13 @@ namespace HcbClients\Service\Clients;
 use HcBackend\Data\Collection\Entities\ByIdsInterface;
 use HcBackend\Service\CommandInterface;
 use HcbClients\Entity\Client as ClientEntity;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Zf2Libs\Stdlib\Service\Response\Messages\Response;
 
 class BlockService implements CommandInterface
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
+     * @var EntityManagerInterface
      */
     protected $entityManager;
 
@@ -24,7 +24,7 @@ class BlockService implements CommandInterface
      */
     protected $blockData;
 
-    public function __construct(EntityManager $entityManager,
+    public function __construct(EntityManagerInterface $entityManager,
                                 Response $response,
                                 ByIdsInterface $blockData)
     {

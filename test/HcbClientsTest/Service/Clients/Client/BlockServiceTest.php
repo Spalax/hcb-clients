@@ -23,7 +23,7 @@ class BlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->entityManager = $this->getMock('\Doctrine\ORM\EntityManager', array(), array(), '', false);
+        $this->entityManager = $this->getMock('\Doctrine\ORM\EntityManagerInterface', array(), array(), '', false);
         $this->blockData = $this->getMock('HcbClients\Data\Clients\BlockInterface');
         $this->response = $this->getMock('Zf2Libs\Stdlib\Service\Response\Messages\Response');
     }

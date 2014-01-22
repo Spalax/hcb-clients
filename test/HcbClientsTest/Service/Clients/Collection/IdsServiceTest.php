@@ -9,7 +9,7 @@ class IdsServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testFetch()
     {
-        $entityManager = $this->getMock('\Doctrine\ORM\EntityManager',
+        $entityManager = $this->getMock('\Doctrine\ORM\EntityManagerInterface',
                                         array(), array(), '', false);
 
         $queryBuilder = $this->getMock('\Doctrine\ORM\QueryBuilder',

@@ -30,7 +30,7 @@ class FetchQbBuilderServiceTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->entityManager = $this->getMock('\Doctrine\ORM\EntityManager',
+        $this->entityManager = $this->getMock('\Doctrine\ORM\EntityManagerInterface',
                                               array(), array(), '', false);
 
         $this->queryBuilder = $this->getMock('\Doctrine\ORM\QueryBuilder',
