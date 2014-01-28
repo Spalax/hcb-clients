@@ -10,7 +10,7 @@ use HcBackend\Entity\MappedUser;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class Client extends MappedUser
+class User extends MappedUser
 {
     const STATE_BLOCKED = 4;
     const ROLE_CLIENT = 2;

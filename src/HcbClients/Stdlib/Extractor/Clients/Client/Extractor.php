@@ -3,7 +3,7 @@ namespace HcbClients\Stdlib\Extractor\Clients\Client;
 
 use Zf2Libs\Stdlib\Extractor\ExtractorInterface;
 use Zf2Libs\Stdlib\Extractor\Exception\InvalidArgumentException;
-use HcbClients\Entity\Client as ClientEntity;
+use HcbClients\Entity\User as ClientEntity;
 
 class Extractor implements ExtractorInterface
 {

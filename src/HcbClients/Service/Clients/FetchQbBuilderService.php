@@ -5,7 +5,7 @@ use HcBackend\Service\Fetch\Paginator\QueryBuilder\DataServiceInterface;
 use HcBackend\Service\Sorting\SortingServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
-use HcbClients\Entity\Client as ClientEntity;
+use HcbClients\Entity\User as ClientEntity;
 use Zend\Stdlib\Parameters;
 
 class FetchQbBuilderService implements DataServiceInterface
@@ -35,7 +35,7 @@ class FetchQbBuilderService implements DataServiceInterface
     {
         /* @var $qb QueryBuilder */
         $qb = $this->entityManager
-                   ->getRepository('HcbClients\Entity\Client')
+                   ->getRepository('HcbClients\Entity\User')
                    ->createQueryBuilder('c');
 
         $qb->where('c.role = :roleId')

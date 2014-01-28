@@ -1,8 +1,10 @@
 <?php
 namespace HcbClientsTest\Service\Clients\Client;
 
-use HcbClients\Entity\Client;
-use HcbClients\Service\Clients\Client\BlockService;
+use HcbClients\Entity\User as ClientEntity;
+use HcbClients\Service\Clients\BlockService;
+
+;
 
 class BlockServiceTest extends \PHPUnit_Framework_TestCase
 {
@@ -48,12 +50,12 @@ class BlockServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testBlockSuccess()
     {
-        $client1 = $this->getMock('HcbClients\Entity\Client');
+        $client1 = $this->getMock('HcbClients\Entity\User');
         $client1->expects($this->once())
                 ->method('setState')
                 ->with(Client::STATE_BLOCKED);
 
-        $client2 = $this->getMock('HcbClients\Entity\Client');
+        $client2 = $this->getMock('HcbClients\Entity\User');
         $client2->expects($this->once())
                 ->method('setState')
                 ->with(Client::STATE_BLOCKED);

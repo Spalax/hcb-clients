@@ -2,7 +2,7 @@
 namespace HcbClients\Service\Clients\Collection;
 
 use HcBackend\Service\Collection\IdsServiceInterface;
-use HcbClients\Entity\Client as ClientEntity;
+use HcbClients\Entity\User as ClientEntity;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use Zend\Di\Di;
@@ -40,7 +40,7 @@ class IdsService implements IdsServiceInterface
 
         /* @var $qb QueryBuilder */
         $qb = $this->entityManager
-                   ->getRepository('HcbClients\Entity\Client')
+                   ->getRepository('HcbClients\Entity\User')
                    ->createQueryBuilder('u');
 
         $qb->where($qb->expr()->eq('u.role', ClientEntity::ROLE_CLIENT));

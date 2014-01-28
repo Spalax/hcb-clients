@@ -1,10 +1,8 @@
 <?php
 namespace HcbClientsTest\Data\Clients;
 
-use HcbClients\Data\Clients\Block;
-use HcbClients\Entity\Client;
+use HcbClients\Entity\User as ClientEntity;
 use Zend\Stdlib\Parameters;
-use ZendTest\Di\TestAsset\DummyParams;
 
 class BlockTest extends \PHPUnit_Framework_TestCase
 {
@@ -52,8 +50,8 @@ class BlockTest extends \PHPUnit_Framework_TestCase
      */
     public function clientsProvider()
     {
-        return array(array(array(new Client(), new Client(), new Client()),
-                           array(new Client())));
+        return array(array(array(new ClientEntity(), new ClientEntity(), new ClientEntity()),
+                           array(new ClientEntity())));
     }
 
     /**

@@ -37,7 +37,7 @@ return array(
 
     'HcbClients-Client-FetchService' => array(
         'parameters' => array(
-            'entityName' => 'HcbClients\Entity\Client'
+            'entityName' => 'HcbClients\Entity\User'
         )
     ),
 

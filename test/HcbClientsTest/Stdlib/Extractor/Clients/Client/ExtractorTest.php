@@ -1,14 +1,14 @@
 <?php
 namespace HcbClientsTest\Stdlib\Extractor\Clients\Client;
 
-use HcbClients\Entity\Client;
+use HcbClients\Entity\User as ClientEntity;
 use HcbClients\Stdlib\Extractor\Clients\Client\Extractor;
 
 class ExtractorTest extends \PHPUnit_Framework_TestCase
 {
     public function testExtract()
     {
-        $client = new Client();
+        $client = new ClientEntity();
 
         $client->setUsername('Test');
         $client->setDisplayName('Pest');

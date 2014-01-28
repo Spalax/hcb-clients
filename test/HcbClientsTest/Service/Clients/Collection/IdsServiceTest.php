@@ -2,7 +2,7 @@
 namespace HcbClientsTest\Service\Clients\Collection;
 
 use Doctrine\ORM\Query\Expr;
-use HcbClients\Entity\Client;
+use HcbClients\Entity\User as ClientEntity;
 use HcbClients\Service\Clients\Collection\IdsService;
 
 class IdsServiceTest extends \PHPUnit_Framework_TestCase
@@ -18,7 +18,7 @@ class IdsServiceTest extends \PHPUnit_Framework_TestCase
         $defaultRepository = $this->getMock('\Doctrine\ORM\EntityRepository',
                                             array(), array(), '', false);
 
-        $client = new Client();
+        $client = new ClientEntity();
 
         $query = $this->getMock('\stdClass', array('getResult'));
         $query->expects($this->once())->method('getResult')
