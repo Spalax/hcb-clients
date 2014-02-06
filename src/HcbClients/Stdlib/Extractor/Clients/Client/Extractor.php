@@ -21,7 +21,7 @@ class Extractor implements ExtractorInterface
         }
         return array('id'=>$user->getId(),
                      'username'=>$user->getUsername(),
-                     'fullname'=>$user->getDisplayName(),
+                     'email'=>$user->getEmail(),
                      'state'=>$user->getState());
     }
 }

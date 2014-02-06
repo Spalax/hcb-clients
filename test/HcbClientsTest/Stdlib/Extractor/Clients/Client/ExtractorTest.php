@@ -10,15 +10,15 @@ class ExtractorTest extends \PHPUnit_Framework_TestCase
     {
         $client = new ClientEntity();
 
+        $client->setEmail('herr@herr.com');
         $client->setUsername('Test');
-        $client->setDisplayName('Pest');
         $client->setState(12);
 
         $extractor = new Extractor();
         $result = $extractor->extract($client);
         $this->assertEquals(array('id'=>'',
                                   'username'=>'Test',
-                                  'fullname'=>'Pest',
+                                  'email'=>'herr@herr.com',
                                   'state'=>12),
                             $result);
     }

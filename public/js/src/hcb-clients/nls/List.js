@@ -3,7 +3,7 @@ define({ root:
     ({
         blockSelectedButton: 'Block Selected',
         labelUsername: 'Username',
-        labelFullName: 'Full Name',
+        labelEmail: 'E-mail',
         labelId: 'Id',
         labelState: 'State',
         loadingMessage: 'Loading ...',

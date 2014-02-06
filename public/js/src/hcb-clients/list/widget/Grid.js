@@ -33,9 +33,7 @@ define([
             {label: translation['labelUsername'], field: 'username', hidden: true,
              resizable: true},
             {label: translation['labelState'], field: 'state', resizable: true},
-            {label: translation['labelFullName'], field: 'fullname',
-             route: 'edit/:id',
-             resizable: true}
+            {label: translation['labelEmail'], field: 'email', resizable: true}
         ],
 
         loadingMessage: translation['loadingMessage'],
