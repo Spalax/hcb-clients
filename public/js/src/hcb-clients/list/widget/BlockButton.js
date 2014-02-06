@@ -5,8 +5,8 @@ define([
     "hc-backend/form/_DgridEventedButtonMixin",
     "hc-backend/router",
     "dojo/request",
-    "dojo-common/response/_StatusMixin",
-    "dojo-common/response/_MessageMixin",
+    "dojo-common/response/Status",
+    "dojo-common/response/Message",
     "dojo/i18n!../../nls/List"
 ], function(declare, lang, Button, _DgridEventedButtonMixin,
             router, request, _StatusMixin, _MessageMixin,
