@@ -1,4 +1,4 @@
-husky-clients
+husky-client
 ==================
 
 Plugin
