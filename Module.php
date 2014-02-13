@@ -1,7 +1,7 @@
 <?php
-namespace HcbClients;
+namespace HcbClient;
 
-use HcbClients\Options\ModuleOptions;
+use HcbClient\Options\ModuleOptions;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -19,8 +19,8 @@ class Module
 
         $config = $sm->get('config');
 
-        $options = new ModuleOptions(isset($config['hcb-clients']) ? $config['hcb-clients'] : array());
-        $di->instanceManager()->addSharedInstance($options, 'HcbClients\Options\ModuleOptions');
+        $options = new ModuleOptions(isset($config['hcb-client']) ? $config['hcb-client'] : array());
+        $di->instanceManager()->addSharedInstance($options, 'HcbClient\Options\ModuleOptions');
     }
 
     public function getConfig()

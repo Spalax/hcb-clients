@@ -1,5 +1,5 @@
 {
-    "name": "huskycms/hcb-clients",
+    "name": "huskycms/hcb-client",
     "type": "huskycms-backend-plugin",
     "description": "Managing clients plugin for backend area of the HuskyCMS",
     "authors": [
@@ -12,7 +12,7 @@
         "huskycms", "plugin", "module"
     ],
     "license": "MIT",
-    "homepage": "http://huskycms.com/hcb-clients",
+    "homepage": "http://huskycms.com/hcb-client",
     "repositories": [
         {
             "type": "composer",
@@ -37,7 +37,7 @@
     },
     "autoload": {
         "psr-0": {
-            "HcbClients": "src/"
+            "HcbClient": "src/"
         },
 
         "classmap": [

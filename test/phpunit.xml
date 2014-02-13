@@ -9,7 +9,7 @@
          backupGlobals="false"
          syntaxCheck="true"
 >
-    <testsuite name="HcbClients Test Suite">
-        <directory>./HcbClientsTest</directory>
+    <testsuite name="HcbClient Test Suite">
+        <directory>./HcbClientTest</directory>
     </testsuite>
 </phpunit>

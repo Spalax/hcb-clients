@@ -1,10 +1,10 @@
 <?php
 return array(
-    'HcbClients-Controller-List' => 'HcBackend\Controller\Common\Collection\ListController',
-    'HcbClients-Controller-Block' => 'HcBackend\Controller\Common\Collection\DataController',
-    'HcbClients-Controller-Show' => 'HcBackend\Controller\Common\Collection\ResourceController',
+    'HcbClient-Controller-List' => 'HcCore\Controller\Common\Rest\Collection\ListController',
+    'HcbClient-Controller-Block' => 'HcCore\Controller\Common\Rest\Collection\DataController',
+    'HcbClient-Controller-Show' => 'HcCore\Controller\Common\Rest\Collection\ResourceController',
 
-    'HcbClients-PaginatorViewModel' => 'Zf2Libs\Paginator\ViewModel\JsonModel',
-    'HcbClients-Clients-Collection' => 'HcBackend\Data\Collection\Entities\ByIds',
-    'HcbClients-Client-FetchService' => 'HcBackend\Service\FetchService'
+    'HcbClient-PaginatorViewModel' => 'Zf2Libs\Paginator\ViewModel\JsonModel',
+    'HcbClient-Clients-Collection' => 'HcCore\Data\Collection\Entities\ByIds',
+    'HcbClient-Client-FetchService' => 'HcCore\Service\FetchService'
 );

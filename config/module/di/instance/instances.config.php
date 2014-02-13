@@ -1,49 +1,49 @@
 <?php
 return array(
-    'HcbClients-Controller-List' => array(
+    'HcbClient-Controller-List' => array(
         'parameters' => array(
-            'paginatorDataFetchService' => 'HcbClients\Service\Clients\FetchQbBuilderService',
-            'viewModel' => 'HcbClients-PaginatorViewModel'
+            'paginatorDataFetchService' => 'HcbClient\Service\FetchQbBuilderService',
+            'viewModel' => 'HcbClient-PaginatorViewModel'
         )
     ),
 
-    'HcbClients-PaginatorViewModel' => array(
+    'HcbClient-PaginatorViewModel' => array(
         'parameters' => array(
-            'extractor' => 'HcbClients\Stdlib\Extractor\Clients\Client\Extractor'
+            'extractor' => 'HcbClient\Stdlib\Extractor\Client'
         )
     ),
 
-    'HcbClients-Controller-Block' => array(
+    'HcbClient-Controller-Block' => array(
         'parameters' => array(
-            'inputData' => 'HcbClients-Clients-Collection',
-            'serviceCommand' => 'HcbClients\Service\Clients\BlockService',
+            'inputData' => 'HcbClient-Clients-Collection',
+            'serviceCommand' => 'HcbClient\Service\BlockService',
             'jsonResponseModelFactory' => 'Zf2Libs\View\Model\Json\Specific\StatusMessageDataModelFactory'
         )
     ),
 
-    'HcbClients-Controller-Show' => array(
+    'HcbClient-Controller-Show' => array(
         'parameters' => array(
-            'fetchService' => 'HcbClients-Client-FetchService',
-            'extractor' => 'HcbClients\Stdlib\Extractor\Clients\Client\Extractor'
+            'fetchService' => 'HcbClient-Client-FetchService',
+            'extractor' => 'HcbClient\Stdlib\Extractor\Client'
         )
     ),
 
-    'HcbClients-Clients-Collection' => array(
+    'HcbClient-Clients-Collection' => array(
         'parameters' => array(
-            'idsCollection' => 'HcbClients\Service\Clients\Collection\IdsService',
+            'idsCollection' => 'HcbClient\Service\Collection\IdsService',
             'inputName' => 'clients'
         )
     ),
 
-    'HcbClients-Client-FetchService' => array(
+    'HcbClient-Client-FetchService' => array(
         'parameters' => array(
-            'entityName' => 'HcbClients\Entity\User'
+            'entityName' => 'HcbClient\Entity\User'
         )
     ),
 
-    'HcbClients\Service\Clients\BlockService' => array(
+    'HcbClient\Service\BlockService' => array(
         'parameters' => array(
-            'blockData' => 'HcbClients-Clients-Collection'
+            'blockData' => 'HcbClient-Clients-Collection'
         )
     )
 );

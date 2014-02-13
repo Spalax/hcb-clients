@@ -19,7 +19,7 @@ return array(
                     'options' => array(
                         'verb' => 'get',
                         'defaults' => array(
-                            'controller' => 'HcbClients-Controller-Show'
+                            'controller' => 'HcbClient-Controller-Show'
                         )
                     )
                 )
@@ -37,7 +37,7 @@ return array(
                     'options' => array(
                         'with' => 'XMLHttpRequest',
                         'defaults' => array(
-                            'controller' => 'HcbClients-Controller-List'
+                            'controller' => 'HcbClient-Controller-List'
                         )
                     )
                 )
@@ -55,7 +55,7 @@ return array(
                     'options' => array(
                         'route' => '/block',
                         'defaults' => array(
-                            'controller' => 'HcbClients-Controller-Block'
+                            'controller' => 'HcbClient-Controller-Block'
                         )
                     )
                 )

@@ -6,9 +6,9 @@ return array(
     'Zend\ServiceManager\ServiceLocatorInterface' =>
     'ServiceManager',
 
-    'HcbClients\Data\Clients\BlockInterface' =>
-    'HcbClients\Data\Clients\Block',
+    'HcbClient\Data\Clients\BlockInterface' =>
+    'HcbClient\Data\Clients\Block',
 
-    'HcbClients\Options\ModuleOptionsInterface' =>
-    'HcbClients\Options\ModuleOptions'
+    'HcbClient\Options\ModuleOptionsInterface' =>
+    'HcbClient\Options\ModuleOptions'
 );

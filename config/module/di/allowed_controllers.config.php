@@ -1,8 +1,8 @@
 <?php
 return array(
     //==========================Clients Controllers=====================//
-    'HcbClients-Controller-List',
-    'HcbClients-Controller-Block',
-    'HcbClients-Controller-Show'
+    'HcbClient-Controller-List',
+    'HcbClient-Controller-Block',
+    'HcbClient-Controller-Show'
     //-----------------------------------------------------------------//
 );

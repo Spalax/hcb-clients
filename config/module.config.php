@@ -6,34 +6,34 @@ return array(
     'doctrine' => array(
         'driver' => array(
             'app_driver' => array(
-                'paths' => array(__DIR__ . '/../src/HcbClients/Entity')
+                'paths' => array(__DIR__ . '/../src/HcbClient/Entity')
             ),
             'orm_default' => array(
                 'drivers' => array(
-                    'HcbClients\Entity' => 'app_driver'
+                    'HcbClient\Entity' => 'app_driver'
                 )
             )
         )
     ),
 
     'zf2simpleacl' => array(
-        'roles' => array('client'=>array('name'=>'client',  'id'=>\HcbClients\Entity\User::ROLE_CLIENT))
+        'roles' => array('client'=>array('name'=>'client',  'id'=>\HcbClient\Entity\User::ROLE_CLIENT))
     ),
 
     'asset_manager' => array(
         'resolver_configs' => array(
             'paths' => array(
-                'HcbClients' => __DIR__ . '/../public',
+                'HcbClient' => __DIR__ . '/../public',
             )
         )
     ),
 
     'hc-backend'=> array(
         'packages' => array(
-            'hcb-clients' => array(
+            'hcb-client' => array(
                 'js'=>array(
                     'type'=>'content',
-                    'http_path'=>'/js/src/hcb-clients'
+                    'http_path'=>'/js/src/hcb-client'
                 )
             )
         )
