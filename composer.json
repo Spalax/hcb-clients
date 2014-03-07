@@ -25,6 +25,7 @@
     "require": {
         "php": ">=5.3.3",
         "huskycms/hc-backend": "dev-master",
+        "huskycms/hc-core": "dev-master",
         "spalax/zf2-libs": "dev-master",
         "spalax/zf2-simple-acl": "dev-master",
         "zf-commons/zfc-user": "0.*",
