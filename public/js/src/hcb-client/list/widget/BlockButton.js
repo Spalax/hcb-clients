@@ -2,16 +2,15 @@ define([
     "dojo/_base/declare",
     "dojo/_base/lang",
     "dijit/form/Button",
-    "hc-backend/form/_DgridEventedButtonMixin",
     "hc-backend/router",
     "dojo/request",
     "dojo-common/response/Status",
     "dojo-common/response/Message",
     "dojo/i18n!../../nls/List"
-], function(declare, lang, Button, _DgridEventedButtonMixin,
+], function(declare, lang, Button,
             router, request, _StatusMixin, _MessageMixin,
             translation) {
-    return declare([ Button, _DgridEventedButtonMixin ], {
+    return declare([ Button ], {
 
         label: translation['blockSelectedButton'],
         disabled: true,
@@ -31,7 +30,7 @@ define([
 
         _error: function () {
             try {
-                var response = new declare([_StatusMixin, _MessageMixin])(resp);
+//                var response = new declare([_StatusMixin, _MessageMixin])(resp);
                 this.emit('error');
             } catch (e) {
                 console.error(this.declaredClass, arguments, e);
