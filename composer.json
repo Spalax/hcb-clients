@@ -23,13 +23,10 @@
         "phpunit/PHPUnit": "3.7.*"
     },
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4",
         "huskycms/hc-backend": "dev-master",
         "huskycms/hc-core": "dev-master",
         "spalax/zf2-libs": "dev-master",
-        "spalax/zf2-simple-acl": "dev-master",
-        "zf-commons/zfc-user": "0.*",
-        "zf-commons/zfc-user-doctrine-orm": "0.*",
         "zendframework/zendframework": "2.3.0",
         "doctrine/doctrine-module": "0.*",
         "doctrine/doctrine-orm-module": "0.*",

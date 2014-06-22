@@ -16,10 +16,6 @@ return array(
         )
     ),
 
-    'zf2simpleacl' => array(
-        'roles' => array('client'=>array('name'=>'client',  'id'=>\HcbClient\Entity\User::ROLE_CLIENT))
-    ),
-
     'asset_manager' => array(
         'resolver_configs' => array(
             'paths' => array(
