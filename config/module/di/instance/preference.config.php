@@ -10,5 +10,8 @@ return array(
     'HcbClient\Data\Clients\Block',
 
     'HcbClient\Options\ModuleOptionsInterface' =>
+    'HcbClient\Options\ModuleOptions',
+
+    'HcbClient\Options\AclOptionsInterface' =>
     'HcbClient\Options\ModuleOptions'
 );

@@ -19,8 +19,11 @@ class Module
 
         $config = $sm->get('config');
 
-        $options = new ModuleOptions(isset($config['hcb-client']) ? $config['hcb-client'] : array());
-        $di->instanceManager()->addSharedInstance($options, 'HcbClient\Options\ModuleOptions');
+        $di->instanceManager()
+            ->addSharedInstance($di->get('HcbClient\Options\ModuleOptions',
+                                         array('options'=>isset($config['hcb-client']) ?
+                                                                $config['hcb-client'] : array())),
+                                    'HcbClient\Options\ModuleOptions');
     }
 
     public function getConfig()

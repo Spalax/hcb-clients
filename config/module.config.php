@@ -24,6 +24,10 @@ return array(
         )
     ),
 
+    'hcb-client'=> array(
+        'defaultUserRole' => 'client'
+    ),
+
     'hc-backend'=> array(
         'packages' => array(
             'hcb-client' => array(
