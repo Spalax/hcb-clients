@@ -1,18 +1,14 @@
 define([
     "dojo/_base/declare",
-    "dojo/_base/array",
-    "dojo/_base/lang",
-    "dojo/on",
     'hc-backend/layout/main/content/_ContentMixin',
     "dijit/_TemplatedMixin",
     "dojo/text!./templates/Container.html",
     "dojo/i18n!../nls/List",
-    "dojo/request",
     "hc-backend/router",
     "hcb-client/list/widget/Grid",
     "hc-backend/dgrid/form/RefreshSelectedButton"
-], function(declare, array, lang, on, _ContentMixin, _TemplatedMixin,
-            template, translation, request, router, Grid, RefreshSelectedButton) {
+], function(declare, _ContentMixin, _TemplatedMixin,
+            template, i18nList, router, Grid, RefreshSelectedButton) {
     return declare([ _ContentMixin, _TemplatedMixin ], {
         //  summary:
         //      List container. Contains widgets who responsible for
@@ -25,7 +21,7 @@ define([
             try {
                 this._gridWidget = new Grid({'class': this.baseClass+'Grid'});
 
-                this._blockWidget = new RefreshSelectedButton({'label': translation['blockSelectedButton'],
+                this._blockWidget = new RefreshSelectedButton({'label': i18nList.blockSelectedButton,
                                                                'target': router.assemble('/block', {}, true),
                                                                'name': 'clients',
                                                                'class': this.baseClass+'BlockClients',

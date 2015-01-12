@@ -2,7 +2,7 @@
 return array(
     'HcbClient-Controller-List' => array(
         'parameters' => array(
-            'paginatorDataFetchService' => 'HcbClient\Service\FetchQbBuilderService',
+            'paginatorDataFetchService' => 'HcbClient\Service\Collection\FetchQbBuilderService',
             'viewModel' => 'HcbClient-PaginatorViewModel'
         )
     ),
@@ -15,8 +15,8 @@ return array(
 
     'HcbClient-Controller-Block' => array(
         'parameters' => array(
-            'inputData' => 'HcbClient-Clients-Collection',
-            'serviceCommand' => 'HcbClient\Service\BlockService',
+            'inputData' => 'HcbClients-Data-Collection-Entities-ByIds-Client',
+            'serviceCommand' => 'HcbClient\Service\Collection\BlockService',
             'jsonResponseModelFactory' => 'Zf2Libs\View\Model\Json\Specific\StatusMessageDataModelFactory'
         )
     ),
@@ -28,9 +28,15 @@ return array(
         )
     ),
 
-    'HcbClient-Clients-Collection' => array(
+    'HcbClients-Service-Collection-IdsService-Client' => array(
         'parameters' => array(
-            'idsCollection' => 'HcbClient\Service\Collection\IdsService',
+            'entityName' => 'HcbClient\Entity\User'
+        )
+    ),
+
+    'HcbClients-Data-Collection-Entities-ByIds-Client' => array(
+        'parameters' => array(
+            'idsCollection' => 'HcbClients-Service-Collection-IdsService-Client',
             'inputName' => 'clients'
         )
     ),
@@ -41,9 +47,9 @@ return array(
         )
     ),
 
-    'HcbClient\Service\BlockService' => array(
+    'HcbClient\Service\Collection\BlockService' => array(
         'parameters' => array(
-            'blockData' => 'HcbClient-Clients-Collection'
+            'blockData' => 'HcbClients-Data-Collection-Entities-ByIds-Client'
         )
     )
 );

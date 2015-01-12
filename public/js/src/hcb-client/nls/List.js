@@ -1,7 +1,7 @@
 define({ root:
 //begin v1.x content
     ({
-        blockSelectedButton: 'Block Selected',
+        blockSelectedButton: 'Block/Unblock Selected',
         labelUsername: 'Username',
         labelEmail: 'E-mail',
         labelId: 'Id',

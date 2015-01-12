@@ -1,11 +1,11 @@
 <?php
-namespace HcbClient\Service;
+namespace HcbClient\Service\Collection;
 
+use HcbClient\Options\AclOptionsInterface;
 use HcCore\Service\Fetch\Paginator\QueryBuilder\DataServiceInterface;
 use HcCore\Service\Sorting\SortingServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
-use HcbClient\Entity\User as ClientEntity;
 use Zend\Stdlib\Parameters;
 
 class FetchQbBuilderService implements DataServiceInterface
@@ -20,11 +20,18 @@ class FetchQbBuilderService implements DataServiceInterface
      */
     protected $entityManager;
 
+    /**
+     * @var AclOptionsInterface
+     */
+    protected $moduleOptions;
+
     public function __construct(EntityManagerInterface $entityManager,
-                                SortingServiceInterface $sortingService)
+                                SortingServiceInterface $sortingService,
+                                AclOptionsInterface $moduleOptions)
     {
         $this->entityManager = $entityManager;
         $this->sortingService = $sortingService;
+        $this->moduleOptions = $moduleOptions;
     }
 
     /**
@@ -36,10 +43,12 @@ class FetchQbBuilderService implements DataServiceInterface
         /* @var $qb QueryBuilder */
         $qb = $this->entityManager
                    ->getRepository('HcbClient\Entity\User')
-                   ->createQueryBuilder('c');
+                   ->createQueryBuilder('u');
 
-        $qb->where('c.role = :roleId')
-           ->setParameter('roleId', ClientEntity::ROLE_CLIENT);
+        $qb->join('u.roles', 'r')
+           ->andWhere('r = :role')
+           ->setParameter('role',
+                          $this->moduleOptions->getDefaultUserRole());
 
         if (is_null($params)) return $qb;
         return $this->sortingService->apply($params, $qb, 'u');

@@ -13,5 +13,7 @@ use HcBackend\Entity\MappedUser;
 class User extends MappedUser
 {
     const STATE_BLOCKED = 4;
+    const STATE_CONFIRMED = 2;
+
     const ROLE_CLIENT = 2;
 }

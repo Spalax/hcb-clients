@@ -1,5 +1,5 @@
 <?php
-namespace HcbClient\Service;
+namespace HcbClient\Service\Collection;
 
 use HcCore\Data\Collection\Entities\ByIdsInterface;
 use HcCore\Service\CommandInterface;
@@ -31,7 +31,7 @@ class BlockService implements CommandInterface
      */
     public function __construct(EntityManagerInterface $entityManager,
                                 Response $response,
-                                ByIdsInterface $blockData = null)
+                                ByIdsInterface $blockData)
     {
         $this->entityManager = $entityManager;
         $this->response = $response;
@@ -58,7 +58,11 @@ class BlockService implements CommandInterface
 
             /* @var $clientEntities ClientEntity[] */
             foreach ($clientEntities as $clientEntity) {
-                $clientEntity->setState(ClientEntity::STATE_BLOCKED);
+                if ($clientEntity->getState() == ClientEntity::STATE_BLOCKED) {
+                    $clientEntity->setState(ClientEntity::STATE_CONFIRMED);
+                } else {
+                    $clientEntity->setState(ClientEntity::STATE_BLOCKED);
+                }
                 $this->entityManager->persist($clientEntity);
             }
 
